@@ -1,0 +1,55 @@
+﻿@model IEnumerable<GIP.PRJ.TraiteurAppGip1.Models.Customer>
+
+@{
+    ViewData["Title"] = "Overzicht klanten";
+}
+
+<h1>Overzicht klanten</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Nieuwe klant</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Info)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmailAddress)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Info)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmailAddress)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Aanpassen</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-controller="Orders" asp-action="CustomerIndex" asp-route-id="@item.Id">Bestellingen</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Verwijderen</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

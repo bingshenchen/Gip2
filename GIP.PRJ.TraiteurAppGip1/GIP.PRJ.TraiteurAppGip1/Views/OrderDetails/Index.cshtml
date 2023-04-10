@@ -1,0 +1,53 @@
+﻿@model IEnumerable<GIP.PRJ.TraiteurAppGip1.Models.OrderDetail>
+
+@{
+    ViewData["Title"] = "Overzicht order";
+}
+
+<h1>Overzicht order - @ViewBag.OrderId</h1>
+
+
+<a asp-action="Create" asp-route-id="@ViewBag.OrderId" class="btn btn-primary">Toevoegen detaillijn</a>
+<a asp-action="CheckOut" asp-controller="Orders" asp-route-id="@ViewBag.OrderId" class="btn btn-success">Afrekenen</a>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MenuItem)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MenuItem.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Aanpassen</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Verwijderen</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
